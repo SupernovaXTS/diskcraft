@@ -1,0 +1,34 @@
+name: "clientdeploy"
+
+on:
+  push:
+    branches:
+      - "master"
+
+jobs:
+  pre-release:
+    name: "deploy client"
+    runs-on: "ubuntu-latest"
+
+    steps:
+      # ...
+      - name: Archive Release
+        uses: thedoctor0/zip-release@master
+        with:
+          type: 'zip'
+          directory: 'modpack'
+          filename: 'modpack.zip'
+          exclusions: '*.git* /*node_modules/* .editorconfig'
+
+      - name: "Build & test"
+        run: |
+          echo "done!"
+
+      - uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: "latest"
+          prerelease: falses
+          title: "Latest Modpack"
+          files: |
+            modpack.zip
