@@ -20,9 +20,6 @@ jobs:
           directory: 'modpack'
           filename: 'modpack.zip'
           exclusions: '*.git* /*node_modules/* .editorconfig'
-  report:
-    runs-on: ubuntu-latest
-    steps:
       - uses: actions/checkout@v2
       - name: Create report file
         run: date +%s > report.txt
