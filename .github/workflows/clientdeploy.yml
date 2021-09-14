@@ -32,5 +32,5 @@ jobs:
           git config --global user.email 'your-username@users.noreply.github.com'
           git commit -am "Automated report"
           git switch "dist"
-          git push
+          git add modpack.zip
 
